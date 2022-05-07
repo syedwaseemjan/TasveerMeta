@@ -11,9 +11,6 @@ Boto library is used for handling interaction with S3. After listing all files i
 
 RabbitMq task queue is used with celery for queueing tasks. Celery gives some other options like redis too. Please look at celery docs for that.
 
-Due to shortage of time 
-No tests, No logging (Just print), No detailed exception handling
-
 ## Development Environment
 
 At the bare minimum you'll need the following for your development environment:
