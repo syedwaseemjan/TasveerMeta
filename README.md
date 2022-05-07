@@ -33,15 +33,13 @@ The following assumes you have all of the recommended tools listed above install
     $ source tasveer_meta/bin/activate
     $ pip install -r requirements/base.txt
 
-    I am using Pillow for extracting exif information from images. If you find any issue during its installation try upgrading your pip. (That worked for me atleast)
-    $ pip install --upgrade pip
-
 #### 3. To run unit tests:
 
     $ python -m unittest tests.server_test
 
 #### 4. Run the celery background task:
-
+    
+    Make sure RabbitMQ server is running and `CELERY_BROKER` is set in app/config.py
     $ python bin/run_celery.py 
 
 #### 5. Run the application:
