@@ -13,7 +13,7 @@ from models import dal, Image
 from config import CELERY_BROKER, DEFAULT_BUCKET
 
 logger = get_task_logger(__name__)
-app = Celery('tasks', broker=CELERY_BROKER)
+app = Celery("tasks", broker=CELERY_BROKER)
 
 
 @app.task
@@ -21,10 +21,9 @@ def process_image(image_id, file_name):
     logger.info(f"Processing file. Image ID: {image_id}, Name: {file_name}")
 
     s3_object = s3.Object(DEFAULT_BUCKET, file_name)
-    total_size = float(s3_object.get()['ContentLength'])
+    total_size = float(s3_object.get()["ContentLength"])
     logger.info(f"total_size: {total_size}")
-    pbar = tqdm(total=total_size, unit='B',
-                unit_scale=True, unit_divisor=1024)
+    pbar = tqdm(total=total_size, unit="B", unit_scale=True, unit_divisor=1024)
 
     def progress(bytes_amount):
         pbar.update(bytes_amount)
@@ -32,7 +31,7 @@ def process_image(image_id, file_name):
     bytes_image = BytesIO()
     s3_object.download_fileobj(bytes_image, Callback=progress)
     pbar.close()
-    logger.info(f'Download Complete. File: {file_name}. Total Size: {total_size}.')
+    logger.info(f"Download Complete. File: {file_name}. Total Size: {total_size}.")
 
     exif = json.dumps(read_exif(bytes_image))
 
@@ -65,9 +64,8 @@ def get_s3_bucket(bucket_name):
 
 
 def get_s3_connection():
-    s3 = boto3.resource('s3')
-    s3.meta.client.meta.events.register(
-        'choose-signer.s3.*', disable_signing)
+    s3 = boto3.resource("s3")
+    s3.meta.client.meta.events.register("choose-signer.s3.*", disable_signing)
     # s3 = boto3.client('s3')
     return s3
 
