@@ -1,4 +1,3 @@
-
 import logging
 from app.tasks import process_image, get_s3_bucket
 from models import Image

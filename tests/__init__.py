@@ -4,16 +4,15 @@
     ~~~~~
     tests package
 """
-
 import sys
 import os
+PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+sys.path.append(PROJECT_DIR)
+sys.path.append(os.path.abspath(os.path.join(PROJECT_DIR, 'app')))
+
 import config as test_config
 from unittest import TestCase
 from app import config
-
-sys.path.insert(0, os.path.abspath(
-    os.path.join(os.path.dirname(__file__), '..')))
-
 
 for attribute in dir(config):
     if not attribute.startswith("__"):

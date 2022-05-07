@@ -31,7 +31,7 @@ The following assumes you have all of the recommended tools listed above install
 
     $ virtualenv tasveer_meta
     $ source tasveer_meta/bin/activate
-    $ pip install -r requirements.py
+    $ pip install -r requirements/base.txt
 
     I am using Pillow for extracting exif information from images. If you find any issue during its installation try upgrading your pip. (That worked for me atleast)
     $ pip install --upgrade pip
